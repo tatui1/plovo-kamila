@@ -5,7 +5,7 @@ export interface IDishShort {
 }
 
 export interface IDishList{
-    [id:string]: IDishList
+    [id:string]: IDishShort
 }
 
 export interface IDish extends IDishShort{
