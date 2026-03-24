@@ -14,40 +14,40 @@ export const Home = () => {
 
     try {
       setLoading(true); 
-      const dishesResponse = await axiosApi.get<IDishList | null>('/dishes.json'); 
-      const dishes = dishesResponse.data; 
+      const dishesResponse = await axiosApi.get<IDishList | null>('/dishes.json');
+      const dishesData = dishesResponse.data;
 
-      if (!dishes) {
+      if (!dishesData) {
+        setDishes([]);
         return;
       }
-      const newDishes:IDish[] = Object.keys(dishes).map(key => {
-        const dish = dishes[key]
-        return {
-          ...dish,
-          id: key,
-        };
-      });
+
+      const newDishes: IDish[] = Object.keys(dishesData).map(key => ({
+        ...dishesData[key],
+        id: key,
+      }));
+
       setDishes(newDishes);
+    } catch (e) {
+      console.error(e);
     } finally {
       setLoading(false);
     }
   }, []);
-  
+
   useEffect(() => {
-    void fetchDishes()
+    void fetchDishes();
   }, [fetchDishes]);
-
-
+  
   return (
     <div>
-        <Typography variant={'h3'} align='center'>
-            Dishes List
-        </Typography>
+      <Typography variant='h3' align='center'>
+        Dishes List
+      </Typography>
         <div className={styles.wrapper}>
-        {dishes.map((dishItem)=> (
-            <DishCard dish={dishItem} key={dishItem.id}/>
-        ))
-      }
+          {dishes.map((dishItem) => (
+            <DishCard dish={dishItem} key={dishItem.id} />
+          ))}
         </div>
     </div>
 
