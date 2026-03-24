@@ -1,37 +1,29 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import type { IDish } from '../../types';
-import {Button, Typography} from '@mui/material'
+import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
+import type { IDish } from '../../types';
 
-interface Props{
-    dish: IDish
+interface Props {
+  dish: IDish;
 }
 
-export const DishCard = ({dish}:Props) => {
+export const DishCard = ({ dish }: Props) => {
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
-
-const goToDishPage = (id: string) => {
-    navigate(`/dish/${id}`)
-} 
-
-    return(
-        <Card>
-            <CardContent>
-                <Typography variant='body1'>
-                    {dish.name}
-                </Typography>
-                 <Typography>
-                    {dish.price} $
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button onClick={() => goToDishPage}>
-                    Show more
-                </Button>
-            </CardActions>
-        </Card>
-    )
-}
+  return (
+    <Card sx={{ minWidth: 100}}>
+      <CardContent>
+        <Typography variant="h5" component="div" gutterBottom>
+          {dish.name}
+        </Typography>
+        <Typography color="text.secondary">
+          Price: {dish.price} $
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" onClick={() => navigate(`/dish/${dish.id}`)}>
+          Show more
+        </Button>
+      </CardActions>
+    </Card>
+  );
+};
