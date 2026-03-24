@@ -10,7 +10,7 @@ export const DishCard = ({ dish }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ minWidth: 100}}>
+    <Card>
       <CardContent>
         <Typography variant="h5" component="div" gutterBottom>
           {dish.name}

@@ -45,6 +45,7 @@ export const Home = () => {
         Dishes List
       </Typography>
         <div className={styles.wrapper}>
+          {loading}
           {dishes.map((dishItem) => (
             <DishCard dish={dishItem} key={dishItem.id} />
           ))}

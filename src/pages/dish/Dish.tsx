@@ -48,7 +48,7 @@ export const Dish = () => {
               color="text.secondary">{dish.description}
               </Typography>
               <Typography 
-              variant="h6"> Price: {dish.price} $
+              variant="h6" color="green"> Price: {dish.price} $
               </Typography>
             </Box>
           ) : (
